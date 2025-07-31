@@ -19,10 +19,10 @@ jobs:
 
     - name: Build Docker image
       run: docker compose build
-      working-directory: ./
-
+      
     - name: Run tests in container
-      run: docker compose run --rm web pytest
-      working-directory: ./
+      env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      run: docker compose run --rm -e SECRET_KEY=$SECRET_KEY web pytest
 
 
