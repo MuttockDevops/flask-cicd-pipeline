@@ -19,7 +19,10 @@ jobs:
 
     - name: Build Docker image
       run: docker compose build
+      working-directory: ./
 
     - name: Run tests in container
       run: docker compose run --rm web pytest
+      working-directory: ./
+
 
