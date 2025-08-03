@@ -1,33 +1,79 @@
-# flask-cicd-pipeline
-Flask app with Docker and GitHub Actions pipeline
+flask-cicd-pipeline
+Flask web application powered by Docker and GitHub Actions, with a complete CI pipeline including automated testing and code coverage reporting.
 
-##  Tech Stack
+Tech Stack
+Python 3.11
 
-- Python 3.11
-- Flask
-- Docker
-- GitHub Actions (CI)
-- Pytest (for testing)
-- WSL2 / Ubuntu (local dev)
+Flask
 
-## Features
+Docker & Docker Compose
 
-- Dockerized development environment
-- GitHub Actions pipeline that installs dependencies and runs tests on push
-- Basic automated unit test using Pytest
-- Simple "Hello DevOps World!" app to prove end-to-end flow
-- Uses `.env` and `python-dotenv` for environment variable management
-- Simple `/` and `/secret` routes to test config and flow
-- Clean project structure with `venv`, `.gitignore`, and modular code
+GitHub Actions (CI/CD)
 
-## Endpoints
+Pytest & Pytest-Cov – for testing and code coverage
 
-- `/` → returns "Hello, DevOps World!"
-- /secret` → pulls and returns `SECRET_KEY` from `.env` (for testing purposes only)
+python-dotenv – for managing secrets via .env
 
-## Getting Started
+Render – for deployment
 
-### Clone the repo
-```bash
-git clone git@github.com:MuttockDevops/flask-cicd-pipeline.git
+WSL2 / Ubuntu – for local development
+
+Features
+Dockerized development and production-ready environment
+
+GitHub Actions pipeline: builds Docker image, runs unit tests, checks test coverage
+
+Test coverage results printed in CI output
+
+Uses .env + python-dotenv to manage environment variables
+
+Clean modular Flask app structure
+
+CI Pipeline Includes:
+Code checkout
+
+Docker build
+
+Pytest execution
+
+Coverage reporting
+
+Automatically deploys to Render on main branch pushes
+
+Clean virtual environment setup, .gitignore, and organized project layout
+
+Endpoints
+Route	Description
+/	Returns Hello, DevOps World!
+/secret	Returns the SECRET_KEY from .env
+
+Testing & Coverage
+Unit tests live in the tests/ directory.
+
+Run locally with:
+
+docker compose run --rm web pytest --cov=app
+Coverage results are also shown in GitHub Actions workflows under the “Run tests with coverage” step.
+
+Deployment
+Live at:
+https://flask-cicd-pipeline.onrender.com
+
+Pushes to main will trigger automatic redeploys on Render.
+
+Getting Started Locally
+
+
+Clone the repository:
+git clone https://github.com/MuttockDevops/flask-cicd-pipeline.git
 cd flask-cicd-pipeline
+
+Create a .env file:
+SECRET_KEY=your-super-secret-key
+
+Build and run the application:
+docker compose build
+docker compose up
+
+Then visit:
+http://localhost:5000
