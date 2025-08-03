@@ -23,6 +23,5 @@ jobs:
     - name: Build Docker image
       run: docker compose build
       
-    - name: Run tests in container
-      run: docker compose run --rm web sh -c "pytest"
-
+    - name: Run tests with coverage
+      run: docker compose run --rm web pytest --cov=app
