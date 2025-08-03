@@ -10,3 +10,5 @@ services:
       - .env
     volumes:
       - .:/app
+    environment:
+      - PYTHONPATH=/app
